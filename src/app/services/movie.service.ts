@@ -11,7 +11,7 @@ export interface Movie {
   poster: string;
   director: string;
   cast: string[];
-  duration: number; // в минутах
+  duration: number; 
   awards?: string[];
 }
 
@@ -27,7 +27,7 @@ export class MovieService {
       genre: ["Фантастика", "Драма", "Приключения"],
       rating: 8.6,
       description: "Когда засуха, пыльные бури и вымирание угрожают человечеству, группа астронавтов отправляется через червоточину в космосе, чтобы найти новый дом для человечества.",
-      poster: "https://image.tmdb.org/t/p/w500/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg",
+      poster: "https://lafeum.ru/img/authors/1607593784.jpeg",
       director: "Кристофер Нолан",
       cast: ["Мэттью Макконахи", "Энн Хэтэуэй", "Джессика Честейн", "Майкл Кейн"],
       duration: 169,
@@ -40,7 +40,7 @@ export class MovieService {
       genre: ["Фантастика", "Триллер", "Драма"],
       rating: 8.0,
       description: "Молодой офицер полиции раскрывает секрет, который может погрузить общество в хаос. Его поиски приводят к бывшему офицеру полиции Лос-Анджелеса.",
-      poster: "https://image.tmdb.org/t/p/w500/lxFTHZHBHRXcuzR9ycpXnkajE8p.jpg",
+      poster: "https://play-lh.googleusercontent.com/Hy4VMlYY6PoUV0xypnLUgu2VaZBvWa81Le6xDeHbY7YD-6mZAM1EB1QD4rmIDpLMpARsmQ",
       director: "Дени Вильнёв",
       cast: ["Райан Гослинг", "Харрисон Форд", "Ана де Армас", "Сильвия Хукс"],
       duration: 164,
@@ -87,16 +87,16 @@ export class MovieService {
     },
     {
       id: 6,
-      title: "Оппенгеймер",
-      year: 2023,
-      genre: ["Драма", "Биография", "История"],
-      rating: 8.6,
-      description: "История американского ученого Дж. Роберта Оппенгеймера и его роли в разработке атомной бомбы.",
-      poster: "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykOGvOEKgBk0.jpg",
-      director: "Кристофер Нолан",
-      cast: ["Киллиан Мерфи", "Эмили Блант", "Мэтт Деймон", "Роберт Дауни мл."],
-      duration: 180,
-      awards: ["Оскар за лучший фильм", "Оскар за лучшую режиссуру", "Оскар за лучшую мужскую роль"]
+      title: "Фантастическая четверка: Первые шаги",
+      year: 2025,
+      genre: ["Екшн", "Наукова", "Фантастика"],
+      rating: 5.7,
+      description: "это команда супергероев из комиксов Marvel, которая состоит из четырёх астронавтов, получивших суперсилы после облучения космическими лучами. Команда стала первой в истории Marvel, появившейся в 1961 году. ",
+      poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0JHZuOxFx0Wej-EI-7Uf9bDHpDQxTZyLxHg&s",
+      director: "Мэтт Шекман",
+      cast: ["Педро Паскаль", "Ванесса Кирби", "Джозеф Куинн", "Эбон Мосс-Бакрак", "Джулия Гарнер", "Ральф Айнесон"],
+      duration: 115,
+      awards: ["EMA Gold Seal"]
     }
   ];
 

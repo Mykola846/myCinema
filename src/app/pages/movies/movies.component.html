@@ -1,1 +1,26 @@
-<p>movies works!</p>
+<div class="movies-page">
+  <h1>Фильмы</h1>
+  <div class="search-bar">
+    <input type="text" placeholder="Поиск по названию, жанру, режиссёру" [(ngModel)]="query" (ngModelChange)="onSearchChange($event)" />
+  </div>
+
+  <div *ngIf="isLoading">Загрузка...</div>
+  <div *ngIf="!isLoading && movies.length === 0">Ничего не найдено</div>
+
+  <div class="movies-grid" *ngIf="!isLoading && movies.length > 0">
+    <a class="movie-card" *ngFor="let movie of movies" [routerLink]="['/movies', movie.id]">
+      <img [src]="movie.poster" [alt]="movie.title" />
+      <div class="movie-info">
+        <h3>{{ movie.title }}</h3>
+        <div class="meta">
+          <span>{{ movie.year }}</span>
+          <span>•</span>
+          <span>⭐ {{ movie.rating }}</span>
+        </div>
+        <div class="genres">
+          <span class="genre" *ngFor="let g of movie.genre">{{ g }}</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

@@ -1,1 +1,16 @@
-<p>login works!</p>
+<div class="login-page">
+  <h1>Вход</h1>
+  <form (ngSubmit)="login()">
+    <div class="field">
+      <label>Email</label>
+      <input type="email" [(ngModel)]="email" name="email" required />
+    </div>
+    <div class="field">
+      <label>Пароль</label>
+      <input type="password" [(ngModel)]="password" name="password" required />
+    </div>
+    <button type="submit" [disabled]="isLoading">{{ isLoading ? 'Входим...' : 'Войти' }}</button>
+    <div class="error" *ngIf="error">{{ error }}</div>
+  </form>
+  <p class="hint">любые email/пароль (локальная авторизация).</p>
+</div>
