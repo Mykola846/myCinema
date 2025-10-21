@@ -1,81 +1,88 @@
-<div class="movie-details-container">
+<div class="movie-details-container min-h-screen bg-gray-900 text-white p-6">
+
   <!-- загрузка -->
-  <div *ngIf="isLoading" class="loading-container">
-    <div class="spinner"></div>
-    <p>Загружаем детали фильма...</p>
+  <div *ngIf="isLoading" class="flex flex-col items-center justify-center min-h-screen">
+    <div class="spinner border-4 border-red-600 border-t-transparent rounded-full w-16 h-16 animate-spin mb-4"></div>
+    <p class="text-gray-400">Загружаем детали фильма...</p>
   </div>
 
   <!-- not found -->
-  <div *ngIf="!isLoading && !movie" class="not-found">
-    <div class="not-found-content">
-      <h2>Фильм не найден</h2>
-      <p>К сожалению, запрашиваемый фильм не найден</p>
-      <button class="back-btn" (click)="goBack()">← Назад к фильмам</button>
-    </div>
+  <div *ngIf="!isLoading && !movie" class="flex flex-col items-center justify-center min-h-screen text-center">
+    <h2 class="text-3xl font-bold mb-2">Фильм не найден</h2>
+    <p class="text-gray-400 mb-4">К сожалению, запрашиваемый фильм не найден</p>
+    <button
+      class="back-btn bg-red-600 hover:bg-red-700 transition px-4 py-2 rounded font-semibold"
+      (click)="goBack()"
+    >
+      ← Назад к фильмам
+    </button>
   </div>
 
   <!-- details -->
-  <div *ngIf="!isLoading && movie" class="movie-details">
+  <div *ngIf="!isLoading && movie" class="space-y-8">
+
     <!-- back btn -->
-    <button class="back-btn" (click)="goBack()">← Назад к фильмам</button>
+    <button
+      class="back-btn bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded font-semibold transition"
+      (click)="goBack()"
+    >
+      ← Назад к фильмам
+    </button>
 
     <!-- main info -->
-    <div class="movie-main">
-      <div class="movie-poster-large">
-        <img [src]="movie.poster" [alt]="movie.title">
-        <div class="movie-rating-large">
-          <span class="rating-value">{{ movie.rating }}</span>
-          <span class="rating-star">⭐</span>
+    <div class="movie-main flex flex-col md:flex-row gap-8">
+      
+      <!-- poster -->
+      <div class="movie-poster-large relative">
+        <img [src]="movie.poster" [alt]="movie.title" class="rounded shadow-lg w-full md:w-64">
+        <div class="movie-rating-large absolute top-2 right-2 bg-black bg-opacity-70 px-2 py-1 rounded text-yellow-400 font-bold">
+          ⭐ {{ movie.rating }}
         </div>
       </div>
 
-      <div class="movie-info-large">
-        <h1 class="movie-title-large">{{ movie.title }}</h1>
-        <p class="movie-year-large">{{ movie.year }}</p>
-        
-        <div class="movie-genres-large">
-          <span *ngFor="let genre of movie.genre" class="genre-tag-large">{{ genre }}</span>
+      <!-- info -->
+      <div class="movie-info-large flex-1">
+        <h1 class="movie-title-large text-4xl font-bold mb-2">{{ movie.title }}</h1>
+        <p class="movie-year-large text-gray-400 mb-4">{{ movie.year }}</p>
+
+        <!-- genres -->
+        <div class="movie-genres-large flex flex-wrap gap-2 mb-4">
+          <span *ngFor="let genre of movie.genre" class="bg-red-600 px-2 py-1 rounded text-xs">{{ genre }}</span>
         </div>
 
-        <div class="movie-meta">
-          <div class="meta-item">
-            <span class="meta-label">Режиссёр:</span>
-            <span class="meta-value">{{ movie.director }}</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Длительность:</span>
-            <span class="meta-value">{{ formatDuration(movie.duration) }}</span>
-          </div>
-          <div class="meta-item">
-            <span class="meta-label">Рейтинг:</span>
-            <span class="meta-value">{{ movie.rating }}/10</span>
-          </div>
+        <!-- meta -->
+        <div class="movie-meta flex flex-wrap gap-4 mb-4 text-gray-300">
+          <div class="meta-item"><span class="font-semibold">Режиссёр:</span> {{ movie.director }}</div>
+          <div class="meta-item"><span class="font-semibold">Длительность:</span> {{ formatDuration(movie.duration) }}</div>
+          <div class="meta-item"><span class="font-semibold">Рейтинг:</span> {{ movie.rating }}/10</div>
         </div>
 
+        <!-- description -->
         <div class="movie-description-large">
-          <h3>Описание</h3>
-          <p>{{ movie.description }}</p>
+          <h3 class="text-2xl font-semibold mb-2">Описание</h3>
+          <p class="text-gray-300">{{ movie.description }}</p>
         </div>
       </div>
     </div>
 
     <!-- actors -->
     <div class="cast-section">
-      <h3>Актерский состав</h3>
-      <div class="cast-list">
-        <span *ngFor="let actor of movie.cast" class="cast-member">{{ actor }}</span>
+      <h3 class="text-2xl font-semibold mb-2">Актерский состав</h3>
+      <div class="cast-list flex flex-wrap gap-2">
+        <span *ngFor="let actor of movie.cast" class="bg-gray-800 px-2 py-1 rounded text-sm">{{ actor }}</span>
       </div>
     </div>
 
-    <!-- award -->
+    <!-- awards -->
     <div *ngIf="movie.awards && movie.awards.length > 0" class="awards-section">
-      <h3>Награды и достижения</h3>
-      <div class="awards-list">
-        <div *ngFor="let award of movie.awards" class="award-item">
+      <h3 class="text-2xl font-semibold mb-2">Награды и достижения</h3>
+      <div class="awards-list flex flex-wrap gap-2">
+        <div *ngFor="let award of movie.awards" class="award-item flex items-center gap-1 bg-gray-800 px-2 py-1 rounded">
           <span class="award-icon">🏆</span>
-          <span class="award-text">{{ award }}</span>
+          <span class="award-text text-sm">{{ award }}</span>
         </div>
       </div>
     </div>
+
   </div>
 </div>

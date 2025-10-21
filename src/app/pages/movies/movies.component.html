@@ -1,24 +1,46 @@
-<div class="movies-page">
-  <h1>Фильмы</h1>
-  <div class="search-bar">
-    <input type="text" placeholder="Поиск по названию, жанру, режиссёру" [(ngModel)]="query" (ngModelChange)="onSearchChange($event)" />
+<div class="movies-page p-6 bg-gray-900 min-h-screen text-white">
+  <h1 class="text-4xl font-bold mb-6">Фильмы</h1>
+
+  <div class="search-bar mb-5">
+    <input
+      type="text"
+      placeholder="Поиск по названию, жанру, режиссёру"
+      [(ngModel)]="query"
+      (ngModelChange)="onSearchChange($event)"
+      class="w-full p-3 rounded bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-600"
+    />
   </div>
 
-  <div *ngIf="isLoading">Загрузка...</div>
-  <div *ngIf="!isLoading && movies.length === 0">Ничего не найдено</div>
+  <div *ngIf="isLoading" class="text-center text-gray-400">Загрузка...</div>
+  <div *ngIf="!isLoading && movies.length === 0" class="text-center text-gray-400">
+    Ничего не найдено
+  </div>
 
-  <div class="movies-grid" *ngIf="!isLoading && movies.length > 0">
-    <a class="movie-card" *ngFor="let movie of movies" [routerLink]="['/movies', movie.id]">
-      <img [src]="movie.poster" [alt]="movie.title" />
-      <div class="movie-info">
-        <h3>{{ movie.title }}</h3>
-        <div class="meta">
+  <div *ngIf="!isLoading && movies.length > 0" class="movies-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+    <a
+      class="movie-card group bg-gray-800 rounded overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300"
+      *ngFor="let movie of movies"
+      [routerLink]="['/movies', movie.id]"
+    >
+      <img
+        [src]="movie.poster"
+        [alt]="movie.title"
+        class="w-full h-64 object-cover"
+      />
+      <div class="movie-info p-4">
+        <h3 class="text-lg font-semibold mb-1 group-hover:text-red-600">{{ movie.title }}</h3>
+        <div class="meta text-gray-400 text-sm mb-2">
           <span>{{ movie.year }}</span>
           <span>•</span>
           <span>⭐ {{ movie.rating }}</span>
         </div>
-        <div class="genres">
-          <span class="genre" *ngFor="let g of movie.genre">{{ g }}</span>
+        <div class="genres flex flex-wrap gap-2">
+          <span
+            class="genre bg-gray-700 px-2 py-1 rounded text-xs"
+            *ngFor="let g of movie.genre"
+          >
+            {{ g }}
+          </span>
         </div>
       </div>
     </a>
