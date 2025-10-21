@@ -16,6 +16,7 @@ export class LoginComponent {
   password: string = '';
   isLoading: boolean = false;
   error: string = '';
+  isSignUp: boolean = false;
 
   constructor(private auth: AuthService, private router: Router) {}
 
@@ -30,5 +31,36 @@ export class LoginComponent {
     } finally {
       this.isLoading = false;
     }
+  }
+
+  async signUp() {
+    this.isLoading = true;
+    this.error = '';
+    try {
+      await this.auth.signUpWithEmail(this.email, this.password);
+      this.router.navigate(['/movies']);
+    } catch (e: any) {
+      this.error = e?.message || 'Ошибка регистрации';
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  async loginWithGoogle() {
+    this.isLoading = true;
+    this.error = '';
+    try {
+      await this.auth.signInWithGoogle();
+      this.router.navigate(['/movies']);
+    } catch (e: any) {
+      this.error = e?.message || 'Ошибка входа через Google';
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  toggleAuthMode() {
+    this.isSignUp = !this.isSignUp;
+    this.error = '';
   }
 }
